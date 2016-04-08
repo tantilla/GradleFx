@@ -16,6 +16,7 @@
 
 package org.gradlefx.tasks
 
+import com.presidiohealth.gradle.tasks.CompileModulesTask
 import org.gradle.api.DefaultTask
 
 class Build extends DefaultTask {
@@ -25,7 +26,7 @@ class Build extends DefaultTask {
         description = 'Assembles and tests this project.'
 
         dependsOn(Tasks.COMPILE_TASK_NAME)
+        dependsOn(CompileModulesTask.COMPILE_MODULES_NAME)
         dependsOn(Tasks.TEST_TASK_NAME)
     }
-
 }

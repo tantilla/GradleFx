@@ -16,6 +16,7 @@
 
 package org.gradlefx.plugins
 
+import com.presidiohealth.gradle.tasks.CompileModulesTask
 import org.gradle.api.Project
 import org.gradle.api.artifacts.PublishArtifact
 import org.gradle.api.artifacts.dsl.ArtifactHandler
@@ -28,16 +29,7 @@ import org.gradlefx.configuration.sdk.states.flex.DetermineFlexSdkDeclarationTyp
 import org.gradlefx.tasks.*
 import org.gradlefx.tasks.adl.AdlTask
 import org.gradlefx.tasks.compile.Compile
-import org.gradlefx.tasks.mobile.InstallApp
-import org.gradlefx.tasks.mobile.InstallSimulatorApp
-import org.gradlefx.tasks.mobile.LaunchApp
-import org.gradlefx.tasks.mobile.LaunchSimulatorApp
-import org.gradlefx.tasks.mobile.ReleaseAirMobilePackage
-import org.gradlefx.tasks.mobile.SimulatorAirMobilePackage
-import org.gradlefx.tasks.mobile.UninstallApp
-import org.gradlefx.tasks.mobile.UninstallSimulatorApp
-import org.gradlefx.validators.FlexSDKSpecifiedValidator
-import org.gradlefx.validators.runner.FailOnErrorValidatorRunner
+import org.gradlefx.tasks.mobile.*
 
 class GradleFxPlugin extends AbstractGradleFxPlugin {
 
@@ -65,6 +57,9 @@ class GradleFxPlugin extends AbstractGradleFxPlugin {
         addTask Tasks.LAUNCH_SIMULATOR_MOBILE_TASK_NAME, LaunchSimulatorApp, { flexConvention.type?.isMobile() }
         addTask Tasks.LAUNCH_ADL_TASK_NAME, AdlTask, { flexConvention.type?.isNativeApp() }
         addTask Tasks.CREATE_HTML_WRAPPER, HtmlWrapper, { flexConvention.type?.isWebApp() }
+
+        //custom task
+        addTask CompileModulesTask.COMPILE_MODULES_NAME, CompileModulesTask
     }
 
     @Override
